@@ -32,7 +32,10 @@ async def apply_leave(page: Page, leave_options=None):
     leave_options = leave_options if leave_options else {}
     leave_url = 'https://llama.greythr.com/v2/employee/apply?key=/v2/employee/apply/leave'
     await page.goto(leave_url)
-    # await page.waitForNavigation()
+    await page.waitForNavigation()
+    
+    # cookies for leave page
+    cookies = await page.cookies()
     
     await page.waitForSelector('#gts-employee-apply-leave > form > fieldset > div:nth-child(1) > div.span4 > div > div > div > i')
     element: ElementHandle = await page.J('#gts-employee-apply-leave > form > fieldset > div:nth-child(1) > div.span4 > div > div > div > input.cb-autocomplete.ui-autocomplete-input')
